@@ -16,7 +16,7 @@ Requirements
 * `Subversion`_
 
 Example usage
-=============
+-------------
 Creating and installing the Sphinx documentation::
 
   $ ./github2info "https://github.com/sphinx-doc/sphinx/tree/master/doc"

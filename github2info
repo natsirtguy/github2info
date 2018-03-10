@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+# Install the info files given a GitHub repository with restructured
+# text documentation using Sphinx, makeinfo, and install-info.
+#
+# Argument:
+#   URL of a GitHub documentation directory, e.g.
+#   "https://github.com/sphinx-doc/sphinx/tree/master/doc"
+
+# Specify your info directory here.
+d="/usr/local/share/info/"
+
+mkdir temp-make-info
+cd temp-make-info
+svn export "${1/tree\/master/trunk}" temp-source
+mkdir temp-build
+sphinx-build -b texinfo temp-source temp-build
+cd temp-build
+makeinfo *.texi
+cp *.info* "$d"
+install-info *.info "$d/dir"
+cd ..
+rm -rf temp-build temp-source
+cd ..
+rmdir temp-make-info

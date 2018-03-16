@@ -16,8 +16,8 @@ svn export "${1/tree\/master/trunk}" temp-source
 mkdir temp-build
 sphinx-build -b texinfo temp-source temp-build
 cd temp-build
-makeinfo *.texi
-cp *.info* "$d"
+makeinfo --no-split *.texi
+cp *.info "$d"
 install-info *.info "$d/dir"
 cd ..
 rm -rf temp-build temp-source
